@@ -16,7 +16,7 @@
  *   - tipPercentage: the percentage as a number (e.g., 15)
  *   - tipAmount: the calculated tip rounded to 2 decimal places
  *   - totalAmount: bill + tip rounded to 2 decimal places
- *
+ *  
  * Rules:
  *   - If billAmount is 0 or negative, return null
  *   - If serviceRating is not an integer from 1 to 5, return null
@@ -31,4 +31,6 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+  if(billAmount < 1) return null;
+  if(typeof serviceRating)
 }
