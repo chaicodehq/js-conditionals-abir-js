@@ -27,4 +27,108 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  if (password === "" || typeof password !== "string") return "weak";
+
+  if (
+    isValidLength(password) &&
+    hasUppercase(password) &&
+    hasLowercase(password) &&
+    hasNumber(password) &&
+    hasSpecialCharacter(password)
+  )
+    return "very strong";
+
+  if (
+    isValidLength(password) &&
+    hasUppercase(password) &&
+    hasLowercase(password) &&
+    hasNumber(password)
+  )
+    return "strong";
+
+  if (
+    isValidLength(password) &&
+    hasUppercase(password) &&
+    hasLowercase(password) &&
+    hasSpecialCharacter(password) &&
+    !hasNumber(password)
+  )
+    return "strong";
+
+
+  if(isValidLength(password) && hasLowercase(password)) return "medium";
+  if (isValidLength(password) && hasUppercase(password) && hasLowercase(password)) return "medium";
+  if(!isValidLength(password) && hasLowercase(password) && hasNumber(password) && hasSpecialCharacter(password)) return "medium";
+
+
+
+  if(isValidLength(password)) return "weak";
+  if (!isValidLength(password)) return "weak";
+}
+
+function isValidLength(password) {
+  if (password.length >= 8) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function hasUppercase(str) {
+  for (let ch of str) {
+    if (ch >= 'A' && ch <= 'Z') return true;
+  }
+  return false;
+}
+
+function hasLowercase(str) {
+  for (let ch of str) {
+    if (ch >= 'a' && ch <= 'z') return true;
+  }
+  return false;
+}
+
+function hasNumber(str) {
+  for (let ch of str) {
+    if (ch >= '0' && ch <= '9') return true;
+  }
+  return false;
+}
+
+
+function hasSpecialCharacter(password) {
+  let isSpecialCharacter = false;
+  for (let i = 0; i < password.length; i++) {
+    if (
+      password[i] === "!" ||
+      password[i] === "@" ||
+      password[i] === "#" ||
+      password[i] === "$" ||
+      password[i] === "%" ||
+      password[i] === "^" ||
+      password[i] === "&" ||
+      password[i] === "*" ||
+      password[i] === "(" ||
+      password[i] === ")" ||
+      password[i] === "_" ||
+      password[i] === "+" ||
+      password[i] === "-" ||
+      password[i] === "=" ||
+      password[i] === "[" ||
+      password[i] === "]" ||
+      password[i] === "{" ||
+      password[i] === "}" ||
+      password[i] === "|" ||
+      password[i] === ";" ||
+      password[i] === ":" ||
+      password[i] === "," ||
+      password[i] === "." ||
+      password[i] === "<" ||
+      password[i] === ">" ||
+      password[i] === "?"
+    ) {
+      isSpecialCharacter = true;
+    }
+  }
+  return isSpecialCharacter;
 }
