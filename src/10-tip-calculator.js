@@ -16,7 +16,7 @@
  *   - tipPercentage: the percentage as a number (e.g., 15)
  *   - tipAmount: the calculated tip rounded to 2 decimal places
  *   - totalAmount: bill + tip rounded to 2 decimal places
- *  
+ *
  * Rules:
  *   - If billAmount is 0 or negative, return null
  *   - If serviceRating is not an integer from 1 to 5, return null
@@ -31,6 +31,76 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
-  if(billAmount < 1) return null;
-  if(typeof serviceRating)
+  if (billAmount < 1) return null;
+  if (
+    typeof serviceRating !== "number" ||
+    serviceRating < 1 ||
+    serviceRating > 5
+  )
+    return null;
+
+  if(!Number.isInteger(serviceRating)){
+    return null;
+  }
+  
+
+  let tipPercentage,
+    tipAmount,
+    totalAmount = 0;
+
+  if (serviceRating === 5) {
+    tipPercentage = 25;
+    tipAmount = (billAmount * tipPercentage) / 100;
+    totalAmount = billAmount + tipAmount;
+    return {
+      tipPercentage,
+      tipAmount,
+      totalAmount,
+    };
+  }
+
+  if (serviceRating === 4) {
+    tipPercentage = 20;
+    tipAmount = (billAmount * tipPercentage) / 100;
+    totalAmount = billAmount + tipAmount;
+    return {
+      tipPercentage,
+      tipAmount,
+      totalAmount,
+    };
+  }
+
+  if (serviceRating === 3) {
+    tipPercentage = 15;
+    tipAmount = (billAmount * tipPercentage) / 100;
+    totalAmount = billAmount + tipAmount;
+    return {
+      tipPercentage,
+      tipAmount,
+      totalAmount,
+    };
+  }
+
+  if (serviceRating === 2) {
+    tipPercentage = 10;
+    tipAmount = (billAmount * tipPercentage) / 100;
+    totalAmount = billAmount + tipAmount;
+    return {
+      tipPercentage,
+      tipAmount,
+      totalAmount,
+    };
+  }
+
+  if (serviceRating === 1) {
+    tipPercentage = 5;
+    tipAmount = (billAmount * tipPercentage) / 100;
+    totalAmount = billAmount + tipAmount;
+    return {
+      tipPercentage,
+      tipAmount,
+      totalAmount,
+    };
+  }
+
 }
