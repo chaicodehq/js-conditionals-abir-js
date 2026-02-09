@@ -27,4 +27,16 @@
  */
 export function calculateTax(income) {
   // Your code here
+  if (typeof income !== "number") return 0;
+  let validIncome = Number(income);
+
+  // let tax = 0;
+
+  if (validIncome <= 0) return 0;
+  if (validIncome >= 1 && validIncome <= 10000) return 0;
+  if (validIncome >= 10001 && validIncome <= 30000)
+    return ((validIncome - 10000) * 10) / 100;
+  if (validIncome >= 30001 && validIncome <= 70000)
+    return 2000 + ((validIncome - 30000) * 20) / 100;
+  if (validIncome >= 70001) return 10000 + ((validIncome - 70000) * 30) / 100;
 }
